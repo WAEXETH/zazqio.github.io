@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>WAEXETH | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Roblox • Portfolio">
+  <meta name="description" content="Roblox Scripter • Web Developer Portfolio">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,75 +17,320 @@
     <div class="circle"></div>
   </div>
 
-  <div class="container">
-    <div class="card">
-      <!-- Profile header -->
-      <div class="profile-header">
-        <div class="avatar-container">
-          <div class="avatar-border"></div>
-          <img src="https://avatars.githubusercontent.com/WAEXETH" alt="WAEXETH Profile" class="profile-img">
-          <div class="online-status"></div>
-        </div>
-        <h1 class="name">WAEXETH</h1>
-        <p class="role">
-          <span class="role-icon"><i class="fas fa-code"></i></span>
-          Roblox Scripter • Web Developer
-        </p>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> Thailand
-        </div>
-      </div>
+  <!-- Custom cursor elements -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+  <div class="cursor-trail"></div>
 
-      <!-- About section -->
-      <div class="about-section">
-        <h2><i class="fas fa-user"></i> About Me</h2>
-        <p class="desc">
-          โอเคไม่มีไรมากจะขอพูดสั้นๆ เลยนะ ผมชื่อ วา หรือจะเรียกวาว่า ก็ได้ อายุ 17-18
-          เป็นผู้ชาย เรียกบอกผมเป็นเกย์หรือเฟมบอยเหอะผมจะบอกว่า ควย 
-        </p>
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-container">
+      <div class="login-header">
+        <h2><i class="fas fa-lock"></i> SECURE ACCESS</h2>
+        <p class="login-subtitle">Private Developer Portal</p>
       </div>
-
-      <!-- Skills section -->
-      <div class="skills-section">
-        <h2><i class="fas fa-star"></i> Skills</h2>
-        <div class="skills">
-          <span class="skill-tag">Lua</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">HTML/CSS</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Roblox Script</span>
-          <span class="skill-tag">Bot Development</span>
+      
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username"><i class="fas fa-user"></i> Username</label>
+          <input type="text" id="username" placeholder="Enter WAEXETH" value="WAEXETH" readonly>
         </div>
-      </div>
-
-      <!-- Links section -->
-      <div class="links-section">
-        <h2><i class="fas fa-link"></i> Connect With Me</h2>
-        <div class="links">
-          <a href="https://github.com/WAEXETH" target="_blank" class="link-btn github">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" target="_blank" class="link-btn discord">
-            <i class="fab fa-discord"></i> Discord
-          </a>
-          <a href="#" target="_blank" class="link-btn portfolio">
-            <i class="fas fa-briefcase"></i> Portfolio
-          </a>
+        
+        <div class="form-group">
+          <label for="password"><i class="fas fa-key"></i> Password</label>
+          <input type="password" id="password" placeholder="Enter any password...">
+          <div class="password-hint">
+            <i class="fas fa-info-circle"></i> Hint: Any password will work!
+          </div>
         </div>
-        <div class="additional-links">
-          <a href="#" class="https://x.com/sa_du48552"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="https://www.youtube.com/@waexeth"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="https://cdn.discordapp.com/attachments/1449365126019813426/1459603370921820233/Messenger_creation_E66343C8-0434-491F-A569-F0CA7975ED98.mp4?ex=696489d1&is=69633851&hm=63c4fef37bc4485de2ca74139637b0b07932b563d3db12356cda34492cdcb621&"><i class="fas fa-envelope"></i></a>
+        
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe">
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-password">Forgot Password?</a>
         </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="footer">
-        <p>© 2026 WAEXETH. All rights reserved.</p>
-        <p class="quote">"Code is like humor When you have to explain it it's bad"</p>
+        
+        <button type="submit" id="loginBtn" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> ACCESS PORTAL
+        </button>
+        
+        <div class="login-note">
+          <i class="fas fa-shield-alt"></i> This is a demo login system. Any password will grant access.
+        </div>
+      </form>
+      
+      <div class="login-footer">
+        <p>WAEXETH Developer Portal v2.1</p>
       </div>
     </div>
   </div>
+
+  <!-- Main Content (hidden until login) -->
+  <div id="mainContent" class="main-content" style="display: none;">
+    <div class="container">
+      <!-- Admin Header -->
+      <div class="admin-header">
+        <div class="admin-info">
+          <div class="admin-avatar">
+            <img src="https://avatars.githubusercontent.com/WAEXETH" alt="WAEXETH">
+            <div class="admin-badge">
+              <i class="fas fa-crown"></i>
+            </div>
+          </div>
+          <div class="admin-details">
+            <h1>WAEXETH <span class="admin-tag">ADMIN</span></h1>
+            <p class="admin-status">
+              <span class="status-indicator active"></span>
+              Last login: <span id="lastLoginTime">Just now</span>
+            </p>
+          </div>
+        </div>
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+
+      <!-- Mini Games Section -->
+      <div class="games-section">
+        <h2><i class="fas fa-gamepad"></i> Mini Games <span class="games-badge">NEW!</span></h2>
+        <p class="games-subtitle">เล่นเกมส์แก้เบื่อได้เลย!</p>
+        
+        <div class="games-grid">
+          <!-- Game 1: Click Challenge -->
+          <div class="game-card" id="clickGame">
+            <div class="game-icon">
+              <i class="fas fa-mouse-pointer"></i>
+            </div>
+            <h3>Click Challenge</h3>
+            <p>คลิกให้เร็วที่สุดใน 10 วินาที!</p>
+            <div class="game-stats">
+              <span>Score: <span id="clickScore">0</span></span>
+              <span>Time: <span id="clickTime">10s</span></span>
+            </div>
+            <button class="game-btn" onclick="startClickGame()">
+              <i class="fas fa-play"></i> Play Now
+            </button>
+          </div>
+          
+          <!-- Game 2: Catch The Dot -->
+          <div class="game-card" id="catchGame">
+            <div class="game-icon">
+              <i class="fas fa-crosshairs"></i>
+            </div>
+            <h3>Catch The Dot</h3>
+            <p>จับจุดสีชมพูที่วิ่งหนี!</p>
+            <div class="game-stats">
+              <span>Caught: <span id="catchScore">0</span></span>
+              <span>Missed: <span id="missScore">0</span></span>
+            </div>
+            <button class="game-btn" onclick="startCatchGame()">
+              <i class="fas fa-play"></i> Play Now
+            </button>
+          </div>
+          
+          <!-- Game 3: Memory Test -->
+          <div class="game-card" id="memoryGame">
+            <div class="game-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Memory Test</h3>
+            <p>จำสีที่กระพริบตามลำดับ!</p>
+            <div class="game-stats">
+              <span>Level: <span id="memoryLevel">1</span></span>
+              <span>Score: <span id="memoryScore">0</span></span>
+            </div>
+            <button class="game-btn" onclick="startMemoryGame()">
+              <i class="fas fa-play"></i> Play Now
+            </button>
+          </div>
+        </div>
+        
+        <!-- Game Areas -->
+        <div class="game-areas">
+          <!-- Click Game Area -->
+          <div id="clickGameArea" class="game-area" style="display: none;">
+            <div class="game-header">
+              <h3><i class="fas fa-mouse-pointer"></i> Click Challenge</h3>
+              <button class="close-game" onclick="closeGame('clickGameArea')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="game-content">
+              <div class="click-target" id="clickTarget">
+                CLICK ME!
+              </div>
+              <div class="game-info">
+                <p>คลิกให้เร็วที่สุด! <span id="clickCounter">0</span> คลิก</p>
+                <p>เวลาคงเหลือ: <span id="clickTimer">10</span> วินาที</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Catch Game Area -->
+          <div id="catchGameArea" class="game-area" style="display: none;">
+            <div class="game-header">
+              <h3><i class="fas fa-crosshairs"></i> Catch The Dot</h3>
+              <button class="close-game" onclick="closeGame('catchGameArea')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="game-content">
+              <div class="catch-container" id="catchContainer">
+                <div class="running-dot" id="runningDot"></div>
+              </div>
+              <div class="game-info">
+                <p>จับจุดสีชมพู! <span id="catchCount">0</span> ครั้ง</p>
+                <p>พลาด: <span id="missCount">0</span> ครั้ง</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Memory Game Area -->
+          <div id="memoryGameArea" class="game-area" style="display: none;">
+            <div class="game-header">
+              <h3><i class="fas fa-brain"></i> Memory Test</h3>
+              <button class="close-game" onclick="closeGame('memoryGameArea')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="game-content">
+              <div class="memory-sequence" id="memorySequence">
+                <!-- Sequence will be generated here -->
+              </div>
+              <div class="memory-buttons">
+                <button class="memory-btn red" data-color="red"></button>
+                <button class="memory-btn blue" data-color="blue"></button>
+                <button class="memory-btn green" data-color="green"></button>
+                <button class="memory-btn yellow" data-color="yellow"></button>
+              </div>
+              <div class="game-info">
+                <p>จำสีที่กระพริบตามลำดับ!</p>
+                <p>ลำดับ: <span id="sequenceLength">3</span> สี</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Profile header -->
+        <div class="profile-header">
+          <div class="avatar-container">
+            <div class="avatar-border"></div>
+            <img src="https://avatars.githubusercontent.com/WAEXETH" alt="WAEXETH Profile" class="profile-img">
+            <div class="online-status"></div>
+          </div>
+          <h1 class="name">WAEXETH</h1>
+          <p class="role">
+            <span class="role-icon"><i class="fas fa-code"></i></span>
+            Roblox Scripter • Web Developer
+          </p>
+          <div class="location">
+            <i class="fas fa-map-marker-alt"></i> Thailand
+          </div>
+        </div>
+
+        <!-- About section -->
+        <div class="about-section">
+          <h2><i class="fas fa-user-secret"></i> About Me <span class="private-badge">PRIVATE</span></h2>
+          <p class="desc">
+            <strong>แนะนำตัว(อย่ารู้เหอะ):</strong> ชื่อ วา เด้อ แต่คนส่วนใหญ่มันเรียกน้องวาว่า อายุ 16-17 อร่อยๆเลยรุ่นนี้ มีแฟนแล้ว หยุดบอกกูเกย์และเปโดสักที่ เคร้าเลยโกดๆๆๆๆๆๆ
+          </p>
+          <div class="private-info">
+            <div class="info-item">
+              <i class="fas fa-bolt"></i>
+              <span>ทำเหิ้ยไรไม่เป็นเลยนอนยู่เฉยๆ🤓</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-project-diagram"></i>
+              <span>เขียนสคริปไป 6-7 แมพ อัพเดทอยู่ 2 พอดีโหดเกิน(ขี้เกียจ)</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Earned ไม่ได้สักบาท ไม่ต้องถามมีตังไหมแค่นี้จะไม่มีข้าวกินแล้ว</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills section -->
+        <div class="skills-section">
+          <h2><i class="fas fa-star"></i> Skills <span class="expert-badge">EXPERT LEVEL</span></h2>
+          <div class="skills">
+            <span class="skill-tag advanced">Lua U <i class="fas fa-check-circle"></i></span>
+            <span class="skill-tag advanced">Roblox Studio <i class="fas fa-check-circle"></i></span>
+            <span class="skill-tag intermediate">HTML/CSS <i class="fas fa-star"></i></span>
+            <span class="skill-tag intermediate">JavaScript <i class="fas fa-star"></i></span>
+            <span class="skill-tag advanced">UI/UX Design <i class="fas fa-check-circle"></i></span>
+            <span class="skill-tag expert">Bot Development <i class="fas fa-crown"></i></span>
+            <span class="skill-tag intermediate">React.js <i class="fas fa-star"></i></span>
+            <span class="skill-tag beginner">Node.js <i class="fas fa-rocket"></i></span>
+          </div>
+        </div>
+
+        <!-- Stats section -->
+        <div class="stats-section">
+          <h2><i class="fas fa-chart-line"></i> Developer Stats</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-code-branch"></i></div>
+              <div class="stat-value">7</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <div class="stat-value">1000+</div>
+              <div class="stat-label">Clients</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-clock"></i></div>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Hours Coded</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-bug"></i></div>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Bugs Fixed</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Links section -->
+        <div class="links-section">
+          <h2><i class="fas fa-link"></i> Connect With Me</h2>
+          <div class="links">
+            <a href="https://github.com/WAEXETH" target="_blank" class="link-btn github">
+              <i class="fab fa-github"></i> GitHub <span class="link-count">24 repos</span>
+            </a>
+            <a href="#" target="_blank" class="link-btn discord">
+              <i class="fab fa-discord"></i> Discord <span class="link-count">Join server</span>
+            </a>
+            <a href="#" target="_blank" class="link-btn portfolio">
+              <i class="fas fa-briefcase"></i> Portfolio <span class="link-count">View work</span>
+            </a>
+          </div>
+          <div class="additional-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-steam"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-paypal"></i></a>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+          <p>© 2023 WAEXETH. <span class="secure-text"><i class="fas fa-shield-alt"></i> Secure Session Active</span></p>
+          <p class="quote">"First, solve the problem. Then, write the code." - John Johnson</p>
+          <p class="mouse-info">Session expires in: <span id="sessionTimer">60:00</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Click effect container -->
+  <div id="click-effects"></div>
 
   <script src="./script.js"></script>
 </body>
